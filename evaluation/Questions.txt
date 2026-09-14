@@ -1,0 +1,34 @@
+# IP-SAKTI Evaluation Test Set
+# Format: query | expected_source_keyword | expected_jurisdiction | expected_answer_keyword
+# expected_source_keyword: a string that must appear in one of the returned source names/paths
+# expected_jurisdiction: india | international | all
+# expected_answer_keyword: a keyword that should appear in the LLM answer (manual/demo scoring)
+# Lines starting with # are ignored.
+
+benefits of Ashvagandha | data.txt | all | ashwagandha
+patent related to neem | data.txt | all | neem
+legal cases involving turmeric | data.txt | all | turmeric
+what does section 3(d) of the patents act say | ip_statutes | india | efficacy
+what does section 3(p) exclude from patentability | ip_statutes | india | traditional
+what is the traditional knowledge digital library | ip_statutes | india | tkdl
+how do I register a geographical indication in India | gi_registry | india | geographical
+what is the nagoya protocol | abs_compliance | international | benefit
+what are benefit sharing obligations for ayurvedic products | abs_compliance | india | benefit
+is my new herbal formulation a classical formulation | formulation_classification | india | classical
+what is a phytopharmaceutical drug | formulation_classification | india | phytopharmaceutical
+are ayurvedic products regulated as dietary supplements in the US | case_law | international | supplement
+what is the wipo gratk treaty | international_treaties | international | disclosure
+what is the patent cooperation treaty | international_treaties | international | national
+what is the madrid system for trademarks | international_treaties | international | trademark
+what is the hague system for designs | international_treaties | international | design
+what is the budapest treaty | international_treaties | international | deposit
+what changed in the biological diversity rules 2024 | international_treaties | india | benefit
+what are the ayurveda aahar regulations 2022 | international_treaties | india | aahar
+what is the drugs and magic remedies act | international_treaties | india | advertisement
+what is DPCO drug price control order | international_treaties | india | price
+what are the patent amendment rules 2024 | international_treaties | india | examination
+how do I do a tkdl prior art search | international_treaties | india | tkdl
+what is TRIPS article 27.3(b) | ip_statutes | international | plant
+eu herbal market access traditional herbal registration | international_treaties | international | herbal
+good manufacturing practices for ayurvedic drugs | drug_regulations | india | gmp
+schedule e1 labelling requirements | drug_regulations | india | label

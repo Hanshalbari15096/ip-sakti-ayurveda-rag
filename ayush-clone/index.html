@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IP-SAKTI Ayurveda IPR Assistant</title>
+  <!--
+    ============================================================
+    EDUCATIONAL CLONE — NOT the real site.
+    Purpose: learn layout, semantic HTML, Flexbox/Grid, responsive CSS.
+    All content below is placeholder/sample text written from scratch.
+    ============================================================
+  -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="chat-widget.css" />
+</head>
+<body>
+
+  <!-- ============ TOP UTILITY BAR ============ -->
+  <!-- Thin strip above the header: language switch + accessibility controls -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-left">
+        <a href="#">Skip to main content</a>
+        <span class="sep">|</span>
+        <a href="#">Screen Reader Access</a>
+      </div>
+      <div class="topbar-right">
+        <button class="a11y-btn" id="decFont" title="Decrease text size">A-</button>
+        <button class="a11y-btn" id="incFont" title="Increase text size">A+</button>
+        <span class="sep">|</span>
+        <a href="#">हिन्दी</a>
+        <span class="sep">|</span>
+        <a href="#">Login</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HEADER / BRANDING ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Emblem placeholder (a simple circle — don't copy real govt logos) -->
+      <div class="emblem" aria-hidden="true">आयुष</div>
+      <div class="brand-text">
+        <h1>Ministry of AYUSH</h1>
+        <p>Government of India &middot; Department of Ayurveda, Yoga &amp; Naturopathy,
+           Unani, Siddha, Sowa-Rigpa and Homoeopathy</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MAIN NAVIGATION ============ -->
+  <nav class="main-nav" id="mainNav">
+    <div class="container nav-inner">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰ Menu</button>
+      <ul class="nav-list" id="navList">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Schemes</a></li>
+        <li><a href="#">Programs</a></li>
+        <li><a href="#">Yoga &amp; Naturopathy</a></li>
+        <li><a href="#">Resources</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============ HERO / BANNER ============ -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <h2>Promoting Holistic Health &amp; Wellness</h2>
+      <p>AYUSH systems aim to integrate traditional Indian medicine with modern
+         healthcare for a healthier nation.</p>
+      <a class="btn" href="#">Explore Schemes</a>
+    </div>
+  </section>
+
+  <!-- ============ KEY SECTIONS GRID ============ -->
+  <main class="container sections">
+    <section class="card">
+      <h3>National AYUSH Mission</h3>
+      <p>Strengthening AYUSH systems through better access to services and education.</p>
+      <a class="link" href="#">Read more →</a>
+    </section>
+    <section class="card">
+      <h3>Ayushman Bharat</h3>
+      <p>Wellness centres promoting preventive and promotive healthcare.</p>
+      <a class="link" href="#">Read more →</a>
+    </section>
+    <section class="card">
+      <h3>International Day of Yoga</h3>
+      <p>Celebrated every 21st June to raise global awareness of yoga's benefits.</p>
+      <a class="link" href="#">Read more →</a>
+    </section>
+    <section class="card">
+      <h3>Research &amp; Education</h3>
+      <p>Supporting institutions and scientific validation of traditional practices.</p>
+      <a class="link" href="#">Read more →</a>
+    </section>
+  </main>
+
+  <!-- ============ NEWS / UPDATES ============ -->
+  <section class="news container">
+    <h2 class="section-title">Latest Updates</h2>
+    <ul class="news-list">
+      <li><span class="date">29 Aug 2026</span> Sample notice: AYUSH scholarship applications open.</li>
+      <li><span class="date">27 Aug 2026</span> Sample: National seminar on integrative medicine announced.</li>
+      <li><span class="date">25 Aug 2026</span> Sample: New research grants for Siddha studies released.</li>
+    </ul>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">About Ministry</a></li>
+          <li><a href="#">Right to Information</a></li>
+          <li><a href="#">Citizen Charter</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Publications</a></li>
+          <li><a href="#">Acts &amp; Rules</a></li>
+          <li><a href="#">Tenders</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>Ministry of AYUSH<br />New Delhi, India<br />Email: info@example.in</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2026 Ministry of AYUSH — Clone built for learning. Not affiliated with the Government of India.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ CHAT WIDGET ============ -->
+  <div class="chat-widget">
+    <div class="chat-overlay" id="chatOverlay"></div>
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-header">
+        <div>
+          <h4>IP-SAKTI Assistant</h4>
+          <span class="status">Ayurveda IPR + RAG assistant</span>
+        </div>
+        <div class="chat-header-controls">
+          <label class="jurisdiction-label" for="jurisdictionSelect">Jurisdiction:</label>
+          <select id="jurisdictionSelect" title="Filter answers by jurisdiction">
+            <option value="all" selected>All</option>
+            <option value="india">India</option>
+            <option value="international">International</option>
+          </select>
+          <button class="close-btn" id="closeChat">&times;</button>
+        </div>
+      </div>
+      <div class="chat-tools">
+        <button class="tool-btn" id="formulationWizardBtn" title="Classify a formulation: Classical / PAM / New Drug / Phytopharm / Aahar / Cosmetic">🧪 Formulation Classifier</button>
+        <button class="tool-btn" id="absWizardBtn" title="ABS compliance checklist: PIC → MAT → NBA approval">📋 ABS Checklist</button>
+        <button class="tool-btn" id="escalateBtn" title="Get contacts for human IP facilitators (attorneys, NBA, GI Registry, NALSA)">👤 Escalate to Human</button>
+      </div>
+      <div class="chat-disclaimer" id="chatDisclaimer">
+        ⚖️ Information, not legal advice — consult a qualified IP attorney before acting.
+      </div>
+      <div class="chat-body" id="chatBody"></div>
+      <div class="chat-footer">
+        <button id="voiceBtn" title="Speak" aria-label="Speak">🎤</button>
+        <input type="text" id="chatInput" placeholder="Ask about Ayurvedic IPR, drug regulations, GIs..." autocomplete="off" />
+        <button id="sendBtn">Send</button>
+      </div>
+    </div>
+    <button class="chat-toggle" id="chatToggle">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+    </button>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="chat-widget.js"></script>
+</body>
+</html>

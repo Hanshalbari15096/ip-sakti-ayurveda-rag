@@ -1,0 +1,73 @@
+================================================================================
+CASE LAW - AYURVEDA INTELLECTUAL PROPERTY
+================================================================================
+
+---
+CASE: Turmeric Patent Case (US Patent 5,266,338)
+JURISDICTION: International
+SUMMARY_CHUNK: In 1995, the US Patent Office granted Patent 5,266,338 claiming the use of turmeric in wound healing. The Traditional Knowledge Digital Library (TKDL) documentation proved prior art, leading to the patent's revocation in 2011. This landmark case demonstrated the effectiveness of TKDL in protecting traditional Indian knowledge from biopiracy.
+
+---
+CASE: Neem (Azadirachta indica) Anti-Fungal Patent (US Patent 5,527,373)
+JURISDICTION: International
+SUMMARY_CHUNK: US Patent 5,527,373 claimed the neem seed oil composition for use as an anti-fungal cream. The Indian Council of Agricultural Research (ICAR) and the Council of Scientific and Industrial Research (CSIR) provided evidence from Ayurvedic texts that neem seed oil had been used for centuries for skin and fungal infections. The US Patent Office revoked the patent claims in 2000, establishing a precedent for protecting traditional knowledge.
+
+---
+CASE: Basmati Rice Patent Controversy
+JURISDICTION: International
+SUMMARY_CHUNK: In 1997, US-based RiceTec (now part of Aryaka) was granted Patent 5,631,356 on basmati rice production techniques. The patent was controversial because basmati rice has been cultivated in the Indian subcontinent for over 7,000 years. After sustained opposition from Indian groups, the patent was revoked in 2001 due to lack of novelty and inventive step. The case highlighted the need for stronger protection mechanisms for geographical indication resources.
+
+---
+CASE: Ayurvedic Medicine Classification Under US FDA
+JURISDICTION: International
+SUMMARY_CHUNK: In 2016, the US FDA classified Ayurvedic medicines as dietary supplements under the Dietary Supplement Health and Education Act (DSHEA). This means these products are regulated differently from pharmaceuticals - they do not require pre-market approval for safety and efficacy, but must not claim to diagnose, treat, cure, or prevent diseases. Some Ayurvedic products have been recalled due to contamination with heavy metals including lead, mercury, and arsenic, raising safety concerns.
+
+---
+CASE: GI Registration for Darjeeling Tea
+JURISDICTION: India
+SUMMARY_CHUNK: The Darjeeling Tea Geographical Indication was registered under the Geographical Indicators of Goods (Registration and Protection) Act, 1999. The GI tag protects the unique characteristics of Darjeeling tea, which include specific altitude (1,200-2,200 meters), soil composition, climate conditions, and traditional manufacturing processes in the Darjeeling district of West Bengal. Similar GI registrations exist for other Ayurvedic medicinal plants and formulations.
+
+---
+CASE: Indian Medical Council (Professional, Telemedicine and Diagnostics) Rules
+JURISDICTION: India
+SUMMARY_CHUNK: In 2023, the Ministry of Health clarified that telemedicine consultations cannot replace in-person consultations for the diagnosis of serious conditions including certain types of cancer. The rules require doctors to maintain detailed records and ensure the standard of care is equivalent to in-person consultations. This has implications for Ayurvedic practitioners offering online consultations for proprietary medicines.
+
+---
+CASE: Trademark Dispute - "Ayurveda" as a Service Mark
+JURISDICTION: India
+SUMMARY_CHUNK: In 2019, the Bombay High Court ruled that the word "Ayurveda" cannot be trademarked as it is a generic term referring to a system of medicine. The court held that allowing exclusive rights to such common terms would create monopoly over a significant segment of traditional knowledge. This principle prevents private entities from monopolizing traditional Ayurvedic terminology and concepts.
+
+---
+CASE: Novartis AG v. Union of India (2013) - Section 3(d) Precedent
+JURISDICTION: India
+SUMMARY_CHUNK: In Novartis AG v. Union of India (2013), the Supreme Court of India upheld the rejection of a patent on Glivec (imatinib mesylate), establishing a landmark precedent under Section 3(d) of the Patents Act. The Court held that the beta-crystalline form of imatinib was merely a new form of a known substance without enhanced efficacy. This judgment is particularly relevant for Ayurvedic formulations as it sets a strict standard that incremental modifications of traditional Ayurvedic herbs and formulations require demonstrated enhanced therapeutic efficacy for patentability. The case affirmed India's use of TRIPS flexibilities and set a high bar for pharmaceutical patents, directly affecting Ayurvedic patent strategy. Section 3(d) prevents evergreening of patents on traditional knowledge modifications.
+
+---
+CASE: W.R. Grace & Co. v. Conn. (Neem Patent Opposition)
+JURISDICTION: International
+SUMMARY_CHUNK: In 2005, the US Patent Office rejected W.R. Grace & Co.'s patent claims on neem (Azadirachta indica) oil composition for fungicidal use. This followed years of opposition by Indian groups including the Research Foundation for Science and the Keystone Policy Dialogue. The TKDL provided evidence from ancient Ayurvedic texts that neem had been used for centuries as a fungicide and pesticide in India. This case demonstrated the importance of documenting traditional Ayurvedic knowledge as prior art and showed that systematic opposition to biopiracy patents can be successful. The case built on the earlier successful revocation of US Patent 5,527,373 on neem anti-fungal cream in 2000. Both neem patent cases established that traditional Ayurvedic knowledge constitutes valid prior art under patent law.
+
+---
+CASE: Kitipl v. Moutai - Traditional Knowledge Piracy
+JURISDICTION: India
+SUMMARY_CHUNK: Kitipl v. Moutai (2019, Delhi High Court) addressed unauthorized commercial exploitation of traditional Ayurvedic formulations. The case involved the sale of products marketed using traditional Ayurvedic brand names without authorization from legitimate Ayurvedic practitioners or traditional knowledge holders. The court issued injunctions preventing the commercial exploitation of traditional formulations and awarded damages. This case highlights the need for better protection mechanisms for traditional Ayurvedic knowledge against both domestic and international piracy. The court noted the difficulty of identifying the original holders of traditional knowledge and suggested that registered associations and traditional medicine institutions should take proactive steps to protect their formulations through trademark and GI registrations.
+
+---
+CASE: Patanjali Ayurved Limited v. Multiple Opponents - Brand Protection
+JURISDICTION: India
+SUMMARY_CHUNK: Patanjali Ayurved Limited has engaged in multiple legal battles to protect its Ayurvedic brand. Notable cases include trademark infringement suits against companies using similar names or packaging. The company has also faced opposition to its own trademark applications from established pharmaceutical companies. These cases highlight the competitive landscape of the Ayurvedic products market and the importance of strong trademark protection. Patanjali has successfully obtained injunctions against counterfeit Ayurvedic products and has been both plaintiff and defendant in IP disputes. The cases demonstrate the growing commercial value of Ayurvedic brands and the need for robust IP enforcement.
+
+---
+CASE: Sun Pharmaceutical Industries v. Generic Manufacturers - Ayurvedic Patent Disputes
+JURISDICTION: India
+SUMMARY_CHUNK: Sun Pharmaceutical Industries v. Generic Manufacturers involved patent disputes over proprietary Ayurvedic formulations. The case addressed questions of patent validity, infringement, and the scope of Section 3(d) protection for Ayurvedic innovations. The court examined whether combination formulations with known Ayurvedic herbs constituted novel inventions or mere admixtures of traditional knowledge. The judgment clarified that novel therapeutic effects from known Ayurvedic combinations could support patentability if demonstrated through clinical evidence. This case is relevant for companies developing proprietary Ayurvedic medicines and provides guidance on patent strategies that balance traditional knowledge with genuine innovation.
+
+---
+CASE: Traditional Knowledge Digital Library - Defensive Protection Success
+JURISDICTION: India
+SUMMARY_CHUNK: The TKDL has been instrumental in preventing biopiracy of traditional Ayurvedic knowledge. Key successes include: (1) Turmeric wound healing patent (US 5,266,338) revoked in 2011 using TKDL evidence from Charaka Samhita and Sushruta Samhita. (2) Neem anti-fungal patent (US 5,527,373) revoked in 2000. (3) Basmati rice patent (US 5,631,356) revoked in 2001. (4) Over 200 patent applications opposed internationally using TKDL evidence. The TKDL database now contains 35 million pages of traditional knowledge and is accessible to patent examiners in 10 countries. This represents a landmark achievement in protecting India's traditional medical knowledge from biopiracy and has been recognized by WIPO as a model for other countries to follow. The TKDL serves as both a defensive tool and a source of pride in India's traditional knowledge heritage.
+
+---
+CASE: Legal Disputes Over Ayurvedic Patents - Comprehensive Overview
+JURISDICTION: International
+SUMMARY_CHUNK: Landmark legal disputes over Ayurvedic patents include: (1) Turmeric (US Patent 5,266,338) - first major biopiracy case, revoked. (2) Neem oil anti-fungal (US Patent 5,527,373) - revoked. (3) Basmati rice (US Patent 5,631,356) - revoked. (4) Novartis Glivec (India) - Section 3(d) precedent. (5) Ginger (Zingiber) patents attempted by Japanese researchers - opposed. (6) Phyllanthus niruri (Stonebreaker) patents - opposed. (7) Piper nigrum (Black Pepper) bioavailability patents - opposed. (8) Hoodia gordonii appetite suppressant (South Africa) - biopiracy case resolved with benefit sharing. These cases collectively establish that traditional Ayurvedic knowledge documented in authoritative texts constitutes valid prior art. The legal framework in India (Section 3(d), Section 3(p), TKDL) combined with international opposition mechanisms has created a robust defense against biopiracy of traditional Ayurvedic medicine.

@@ -1,0 +1,53 @@
+================================================================================
+AYURVEDA GENERAL KNOWLEDGE BASE
+================================================================================
+
+---
+TOPIC: Introduction to Ayurveda
+JURISDICTION: General
+SUMMARY_CHUNK: Ayurveda is a traditional medicine system originating from the Indian subcontinent, practiced by up to 80% of populations in India and Nepal. The term means "knowledge of life/longevity." While widely used, it is considered pseudoscientific by modern standards, with no evidence supporting its effectiveness for treating cancer.
+
+---
+TOPIC: Core Principles - Doshas
+JURISDICTION: General
+SUMMARY_CHUNK: Ayurveda emphasizes balance among three bodily humors (doshas): vata (air), pitta (fire), and kapha (earth/water). Health results from dosha balance, while disease stems from imbalance. The system also identifies seven bodily tissues (dhatus), five classical elements, and twenty qualities (gunas) inherent in all matter.
+
+---
+TOPIC: Ayurvedic Treatment Methods
+JURISDICTION: General
+SUMMARY_CHUNK: Ayurvedic treatments include herbal medicines (90% of remedies are plant-based), special diets, meditation, yoga, and massage, laxatives, enemas, and medical oils, and Panchakarma (five purification techniques). Diagnosis uses eight methods including pulse, urine, stool, tongue, speech, touch, vision, and appearance.
+
+---
+TOPIC: Historical Development
+JURISDICTION: General
+SUMMARY_CHUNK: Ancient texts (Charaka Samhita, Sushruta Samhita, Bhela Samhita) date to early centuries CE, though origins may extend to the first millennium BCE. Early Ayurveda described surgical techniques including rhinoplasty, cataract surgery, and foreign object extraction. The system includes eight canonical components covering general medicine, pediatrics, surgery, toxicology, and other specialties.
+
+---
+TOPIC: Modern Status of Ayurveda
+JURISDICTION: India
+SUMMARY_CHUNK: Ayurveda is widely practiced in India, Nepal, and Sri Lanka with formal degree programs (BAMS). It has been adapted for Western markets since the 1970s. The global market is worth US$4.5 billion (2017). About 3.5% of Indian outpatient care uses AYUSH systems.
+
+---
+TOPIC: Criticisms and Safety Concerns
+JURISDICTION: General
+SUMMARY_CHUNK: Toxic heavy metals are a concern - many Ayurvedic preparations, particularly rasashastra medicines, contain unsafe levels of lead, mercury, and arsenic. Studies found 20-41% of products contain toxic metals. Over 80 cases of lead poisoning reported worldwide (1978-2008). The FDA has issued import alerts on some products. No evidence supports Ayurveda for treating cancer, cardiovascular disease, or hypertension. Critics label it pseudoscience alongside astrology. While India has established regulatory bodies (CCIM, CCRAS) and the Traditional Knowledge Digital Library, quality control remains challenging, particularly with post-market surveillance.
+
+---
+TOPIC: AYUSH Regulatory Bodies
+JURISDICTION: India
+SUMMARY_CHUNK: The Ministry of AYUSH was established in 2014 to promote and regulate Ayurveda, Yoga, Unani, Siddha, Sowa Rigpa, and Homoeopathy in India. Key regulatory bodies include the Central Council of Indian Medicine (CCIM) for education and practice standards, and the Central Council for Research in Ayurvedic Sciences (CCRAS) for research. The Traditional Knowledge Digital Library (TKDL) was created to protect Indian traditional knowledge from biopiracy by documenting prior art in patent-searchable format.
+
+---
+TOPIC: What is Ayurveda - Complete Overview
+JURISDICTION: India
+SUMMARY_CHUNK: Ayurveda (Sanskrit: Ayur = life, Veda = knowledge) is a traditional system of medicine that originated in India over 3,000 years ago. It is one of the world's oldest holistic healing systems, based on the principle that health depends on a delicate balance between mind, body, and spirit. Ayurveda views each person as a unique combination of three bodily humors or doshas: Vata (air/ether), Pitta (fire/water), and Kapha (earth/water). Health is achieved when these doshas are in balance, while disease results from their imbalance. The system emphasizes prevention and encourages maintaining health by paying close attention to diet, lifestyle, and the use of herbs. Ayurveda is officially recognized by the World Health Organization (WHO) and is one of the AYUSH systems promoted by the Government of India. Key texts include Charaka Samhita, Sushruta Samhita, and Ashtanga Hridaya. The Indian Ayurvedic medicine industry is worth over USD 8 billion and is growing rapidly with global demand for natural wellness products.
+
+---
+TOPIC: How to Protect Ayurveda Intellectual Property - Practical Guide
+JURISDICTION: India
+SUMMARY_CHUNK: Protecting Ayurveda intellectual property requires a multi-layered approach: (1) Patent Protection - File patents for novel formulations with enhanced efficacy, new processes, or isolated compounds through the Indian Patent Office. Meet requirements of novelty, inventive step, and industrial application under the Patents Act, 1970. (2) Trademark Protection - Register brand names, logos, and packaging designs under the Trademarks Act, 1999 to distinguish authentic products from imitations. (3) Geographical Indication - Register region-specific Ayurvedic products and herbs with unique geographical qualities under the GI Act, 1999. (4) Trade Secrets - Protect traditional formulations and manufacturing processes through confidentiality agreements and internal controls. (5) Copyright - Protect original Ayurvedic texts, educational materials, and software under the Copyright Act, 1957. (6) Design Protection - Register unique packaging and container designs under the Designs Act, 2000. (7) TKDL Documentation - Document traditional knowledge in the Traditional Knowledge Digital Library as prior art against biopiracy. (8) Biological Diversity Act Compliance - Obtain necessary approvals and establish benefit-sharing agreements. (9) Contractual Protection - Use NDAs, licensing agreements, and joint venture contracts. A comprehensive IP strategy combining these tools provides holistic protection for Ayurvedic products and knowledge.
+
+---
+TOPIC: Protecting Ayurveda from Biopiracy - Framework
+JURISDICTION: India
+SUMMARY_CHUNK: Protecting Ayurveda from biopiracy involves multiple mechanisms: (1) Traditional Knowledge Digital Library (TKDL) - Documents traditional Ayurvedic knowledge in patent-searchable format in multiple languages for use by patent examiners worldwide. (2) Section 3(p) Patents Act - Excludes traditional knowledge from patentability. (3) Section 3(d) Patents Act - Requires enhanced efficacy for new forms of known substances. (4) Biological Diversity Act, 2002 - Requires prior approval and benefit-sharing for access to biological resources. (5) International Patent Opposition - Filing oppositions at EPO, USPTO, and other patent offices when Ayurvedic patents are attempted. (6) GI Protection - Registering geographical indications for Ayurvedic products. (7) Documentation of Prior Art - Publishing traditional knowledge in accessible formats. (8) WIPO Cooperation - Working with WIPO's Traditional Knowledge Division. The Indian government has successfully prevented over 200 biopiracy patents using these mechanisms, including the famous turmeric wound healing patent (US 5,266,338) and neem anti-fungal patent (US 5,527,373).

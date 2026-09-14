@@ -1,0 +1,53 @@
+{
+  "version": "2.1.0",
+  "date": "2026-09-14",
+  "description": "IP-SAKTI curated Ayurveda IPR corpus with jurisdiction metadata; project-management meta removed from retrievable corpus",
+  "jurisdictions": ["India", "International", "General"],
+  "freshness_check": {
+    "method": "SHA-1 digest of every data/*.txt file, stored in my_db/corpus_manifest.json",
+    "behavior": "The vector store rebuilds automatically whenever any corpus file changes"
+  },
+  "sources": [
+    {"path": "data.txt", "note": "Consolidated knowledge base (root)", "jurisdiction": "mixed"},
+    {"path": "data/ayurveda_overview.txt", "category": "Ayurveda Overview", "jurisdiction": "General"},
+    {"path": "data/herbs.txt", "category": "Ayurvedic Herb", "jurisdiction": "General"},
+    {"path": "data/herbs/herbs_detailed.txt", "category": "Ayurvedic Herb", "jurisdiction": "General"},
+    {"path": "data/ip_statutes/ip_statutes.txt", "category": "IP Statute", "jurisdiction": "India + International"},
+    {"path": "data/drug_regulations/drug_regulations.txt", "category": "Drug Regulation", "jurisdiction": "India"},
+    {"path": "data/formulation_classification/formulation_classification.txt", "category": "Formulation Classification", "jurisdiction": "India"},
+    {"path": "data/gi_registry/gi_registry.txt", "category": "Geographical Indication", "jurisdiction": "India"},
+    {"path": "data/case_law/case_law.txt", "category": "Case Law", "jurisdiction": "India + International"},
+    {"path": "data/abs_compliance/abs_compliance.txt", "category": "Access & Benefit Sharing", "jurisdiction": "India + International"},
+    {"path": "data/international_treaties/international_treaties.txt", "category": "International Treaty", "jurisdiction": "International + India", "added": "2026-09-07"},
+    {"path": "data/sanskrit/ayurveda_ipr_sanskrit.txt", "category": "Sanskrit", "jurisdiction": "General"},
+    {"path": "data/bengali/bengali_ipr.txt", "category": "Bengali", "jurisdiction": "General"},
+    {"path": "data/tamil/tamil_ipr.txt", "category": "Tamil", "jurisdiction": "General"},
+    {"path": "data/telugu/telugu_ipr.txt", "category": "Telugu", "jurisdiction": "General"},
+    {"path": "data/kannada/kannada_ipr.txt", "category": "Kannada", "jurisdiction": "General"},
+    {"path": "data/gujarati/gujarati_ipr.txt", "category": "Gujarati", "jurisdiction": "General"}
+  ],
+  "updates": [
+    {
+      "version": "2.1.0",
+      "date": "2026-09-14",
+      "changes": [
+        "Removed 'IP-SAKTI Project Information' section (team members, progress %, work packages) from data/data.txt so the assistant never cites project-management meta as authoritative content; preserved in docs/project_plan_notes.md",
+        "Added SHA-1 content-hash freshness check (my_db/corpus_manifest.json): vector store rebuilds automatically on any corpus change",
+        "Restored root_search.py source (only a stale .pyc remained)",
+        "Scrubbed placeholder secrets from .env.example"
+      ]
+    },
+    {
+      "version": "2.0.0",
+      "date": "2026-09-07",
+      "changes": [
+        "Added data/international_treaties/international_treaties.txt with WIPO GRATK Treaty (2024), PCT, Madrid, Hague, Budapest Treaty, TRIPS 27.3(b), Nagoya Protocol, EU herbal market access",
+        "Added 2024 updates: Biological Diversity (Amendment) Act/Rules 2024, Patents (Amendment) Rules 2024",
+        "Added DMRDA (1954) detailed, DPCO (2013), FSSAI Ayurveda Aahar Regulations 2022",
+        "Added TKDL prior-art search guide (tkdl.res.in)",
+        "Added human escalation contacts (IP attorneys, NBA, GI Registry, NALSA)",
+        "Added jurisdiction metadata to all chunks in ChromaDB"
+      ]
+    }
+  ]
+}

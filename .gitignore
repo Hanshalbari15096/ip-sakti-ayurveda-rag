@@ -1,0 +1,20 @@
+# Secrets — never commit
+.env
+.env.local
+
+# Virtual environment
+.venv/
+venv/
+
+# Vector store + generated artifacts
+my_db/
+*.pyc
+__pycache__/
+
+# Assistant memory / session logs (regenerated per session)
+.remember/
+.claude/worktrees/
+
+# OS / editor
+.DS_Store
+Thumbs.db

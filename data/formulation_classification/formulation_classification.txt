@@ -1,0 +1,48 @@
+================================================================================
+FORMULATION CLASSIFICATION - AYURVEDIC MEDICINES
+================================================================================
+
+---
+TOPIC: Classical Ayurvedic Formulations
+JURISDICTION: India
+SUMMARY_CHUNK: Classical Ayurvedic formulations are those that are included in authoritative texts of Ayurveda, such as the Charaka Samhita, Sushruta Samhita, Ashtanga Hridaya, Bhaishajya Ratnavali, and the Ayurvedic Pharmacopoeia of India (API). These formulations have been used for centuries and their safety and efficacy are established through traditional use. Examples include Triphala (three fruits), Chyawanprash (amalaki-based rejuvenative), Trikatu (three pungents), and Dashamoola (ten roots). Classical formulations do not require pre-market approval for safety and efficacy as their traditional use is considered sufficient evidence.
+
+---
+TOPIC: Proprietary Ayurvedic Medicines (PAMs)
+JURISDICTION: India
+SUMMARY_CHUNK: Proprietary Ayurvedic Medicines (PAMs) are new formulations that are not included in authoritative Ayurvedic texts but are based on Ayurvedic principles. These formulations require pre-market approval from the Drugs Controller General of India (DCGI). The approval process requires submission of safety and efficacy data from clinical trials. PAMs are typically manufactured by specific companies and may have brand names. Examples include many modern Ayurvedic products marketed by companies like Himalaya, Dabur, and Patanjali.
+
+---
+TOPIC: New Drugs Under the Drugs and Cosmetics Act
+JURISDICTION: India
+SUMMARY_CHUNK: Under the Drugs and Cosmetics Act, a "new drug" is defined as a drug that has not been marketed in India for at least 20 years. This includes: (1) drugs with new active ingredients, (2) new formulations of known ingredients, (3) new routes of administration, and (4) new indications for known drugs. New drugs require pre-market approval from the DCGI, including safety and efficacy data from clinical trials. For Ayurvedic drugs, this typically includes data from animal studies and human clinical trials.
+
+---
+TOPIC: Phytopharmaceutical Drugs
+JURISDICTION: India
+SUMMARY_CHUNK: Phytopharmaceutical drugs are a new regulatory category introduced in India in 2015. They are defined as "a drug which is derived from plant sources and is used for therapeutic purposes, and whose active ingredients are known and standardized." Phytopharmaceuticals require pre-market approval from the DCGI, including safety and efficacy data. This category bridges the gap between traditional Ayurvedic medicines and modern pharmaceuticals. Examples include standardized extracts of Ashwagandha, Turmeric, and Brahmi.
+
+---
+TOPIC: Food Supplements vs. Medicines
+JURISDICTION: India
+SUMMARY_CHUNK: Ayurvedic products can be classified as either food supplements or medicines, depending on their intended use and claims. Food supplements are regulated under the Food Safety and Standards Act, 2006, and do not require pre-market approval for safety and efficacy. Medicines are regulated under the Drugs and Cosmetics Act, 1940, and require pre-market approval. The key distinction is the claims made: if a product claims to diagnose, treat, cure, or prevent a disease, it is a medicine; if it claims to supplement the diet or maintain health, it is a food supplement.
+
+---
+TOPIC: Cosmetic Classification
+JURISDICTION: India
+SUMMARY_CHUNK: Some Ayurvedic products, such as oils, creams, and lotions for external application, may be classified as cosmetics. Cosmetics are regulated under the Drugs and Cosmetics Act, 1940, and the Cosmetics Rules, 2020. They do not require pre-market approval but must comply with labeling requirements and safety standards. The distinction between a cosmetic and a medicine depends on the claims made: if a product claims to treat a skin condition, it is a medicine; if it claims to cleanse, beautify, or maintain the skin, it is a cosmetic.
+
+---
+TOPIC: Formulation Classification Decision Tree
+JURISDICTION: India
+SUMMARY_CHUNK: To classify an Ayurvedic formulation: (1) Is the formulation in an authoritative Ayurvedic text? If YES → Classical formulation. If NO → proceed to step 2. (2) Does the formulation contain a new active ingredient or a new combination of ingredients? If YES → New drug/PAM. If NO → proceed to step 3. (3) Are the active ingredients known and standardized? If YES → Phytopharmaceutical. If NO → proceed to step 4. (4) What are the intended claims? If treating disease → Medicine. If supplementing diet → Food supplement. If external application for beautification → Cosmetic.
+
+---
+TOPIC: Regulatory Requirements by Classification
+JURISDICTION: India
+SUMMARY_CHUNK: Regulatory requirements vary by classification: (1) Classical formulations - No pre-market approval, but must comply with GMP, API standards, and labeling under Schedule E(1). (2) PAMs/New drugs - Pre-market approval from DCGI, clinical trials, GMP compliance, and pharmacovigilance reporting. (3) Phytopharmaceuticals - Pre-market approval from DCGI, standardized extract characterization, clinical trials, and pharmacovigilance. (4) Food supplements - FSSAI registration/license, compliance with food standards, and labeling under FSSAI regulations. (5) Cosmetics - CDSCO registration, compliance with cosmetic standards, and labeling under Cosmetics Rules, 2020.
+
+---
+TOPIC: Classification Implications for IP Protection
+JURISDICTION: India
+SUMMARY_CHUNK: Classification affects IP protection: (1) Classical formulations - Not patentable under Section 3(p) of the Patents Act as "traditional knowledge," but individual ingredients may be patentable if novel. (2) PAMs/New drugs - Potentially patentable if novel, inventive, and industrially applicable, but Section 3(c) and 3(p) may apply. (3) Phytopharmaceuticals - May be patentable if the standardized extract or process is novel and non-obvious. (4) Food supplements - Limited patent protection, but brand names and packaging can be trademarked. (5) Cosmetics - Formulations may be patentable if novel, and trademarks, designs, and trade secrets can be protected.

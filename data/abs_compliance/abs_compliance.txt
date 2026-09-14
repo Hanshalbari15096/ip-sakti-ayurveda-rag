@@ -1,0 +1,48 @@
+================================================================================
+ACCESS AND BENEFIT SHARING (ABS) COMPLIANCE - AYURVEDA
+================================================================================
+
+---
+TOPIC: Biological Diversity Act, 2002 (India)
+JURISDICTION: India
+SUMMARY_CHUNK: The Biological Diversity Act, 2002 governs access to biological resources and associated traditional knowledge in India. It requires that any transfer of biological resources for commercial use must obtain prior approval from the State Biodiversity Board. Local communities have rights to their traditional knowledge and must benefit from commercialization. The Act implements the Convention on Biological Diversity (CBD) and the Nagoya Protocol on Access and Benefit-Sharing.
+
+---
+TOPIC: Nagoya Protocol on Access and Benefit-Sharing
+JURISDICTION: International
+SUMMARY_CHUNK: The Nagoya Protocol (2010) is an international treaty that operationalizes the Convention on Biological Diversity. It establishes clear obligations for users of genetic resources and associated traditional knowledge to obtain prior informed consent (PIC) and establish mutually agreed terms (MAT) for benefit-sharing. India is a party to the Protocol and has implemented it through the Biological Diversity Act, 2002.
+
+---
+TOPIC: Benefit-Sharing Obligations for Ayurvedic Products
+JURISDICTION: India
+SUMMARY_CHUNK: For Ayurvedic products using biological resources, benefit-sharing obligations include: (1) monetary benefits such as royalty payments (typically 5-15% of net profits or annual revenue), (2) non-monetary benefits such as technology transfer and capacity building, (3) joint ownership of intellectual property rights, and (4) conservation and sustainable use benefits. The State Biodiversity Board must approve any commercial use of biological resources.
+
+---
+TOPIC: TKDL and Traditional Knowledge Protection
+JURISDICTION: India
+SUMMARY_CHUNK: The Traditional Knowledge Digital Library (TKDL) is a digital repository of India's traditional knowledge, particularly Ayurvedic formulations and uses. It is designed to prevent biopiracy by making traditional knowledge available to patent examiners worldwide in a searchable format. TKDL contains over 35,000 traditional knowledge documents in five languages. It has successfully prevented the granting of patents on traditional Ayurvedic knowledge, including on turmeric for wound healing and neem for antifungal properties.
+
+---
+TOPIC: ABS Compliance Checklist for Ayurvedic Startups
+JURISDICTION: India
+SUMMARY_CHUNK: Ayurvedic startups must: (1) identify all biological resources used in formulations, (2) determine if resources are sourced from within India, (3) obtain PIC from the State Biodiversity Board if using Indian biological resources, (4) negotiate MAT with benefit-sharing agreements, (5) register with the National Biodiversity Authority (NBA) if accessing resources for commercial use, (6) comply with IPR disclosure requirements under the Biological Diversity Act, and (7) maintain records of all access and benefit-sharing arrangements.
+
+---
+TOPIC: International ABS Considerations
+JURISDICTION: International
+SUMMARY_CHUNK: For Ayurvedic products using resources from other countries, the Nagoya Protocol requires compliance with the ABS laws of the provider country. India's Biological Diversity Act also restricts export of certain biological resources. Key considerations include: (1) verifying ABS compliance in the country of origin, (2) ensuring benefit-sharing obligations are met in both countries, (3) understanding the EU's implementation of the Nagoya Protocol, and (4) complying with the US's different approach to genetic resources (which is not party to the Nagoya Protocol).
+
+---
+TOPIC: Nagoya Protocol - Detailed Requirements for Ayurveda
+JURISDICTION: International
+SUMMARY_CHUNK: The Nagoya Protocol on Access and Benefit-Sharing (ABS), adopted in 2010 and entered into force in 2014, is a supplementary agreement to the Convention on Biological Diversity. For Ayurvedic products, the Protocol establishes clear requirements: (1) Prior Informed Consent (PIC) - obtaining permission from the provider country's competent authority before accessing genetic resources or traditional knowledge. (2) Mutually Agreed Terms (MAT) - negotiating fair and equitable benefit-sharing arrangements. (3) Compliance with provider country legislation. (4) Disclosure of origin in patent applications. India is a party to the Protocol and has implemented it through the Biological Diversity Act, 2002. The Protocol affects: (a) sourcing of medicinal plants from foreign countries, (b) international research collaborations, (c) export of Ayurvedic formulations containing foreign biological resources, (d) patent applications involving genetic resources. Penalties for non-compliance include denial of patent rights and trade restrictions.
+
+---
+TOPIC: Benefit Sharing Requirements for Medicinal Plants
+JURISDICTION: India
+SUMMARY_CHUNK: Benefit sharing requirements for medicinal plants in India are governed by the Biological Diversity Act, 2002 and the Access and Benefit Sharing (ABS) Regulations, 2014. Requirements include: (1) Prior Informed Consent (PIC) from the State Biodiversity Board for access to biological resources. (2) Mutually Agreed Terms (MAT) negotiated with biodiversity holders including local communities. (3) Monetary benefits typically include: (a) royalty payments of 3-5% of net profits, (b) one-time upfront payments, (c) milestone payments, (d) licensing fees. (4) Non-monetary benefits include: (a) technology transfer, (b) capacity building, (c) joint research and development, (d) joint ownership of IP, (e) preferential access to developed products. (5) Benefit-sharing obligations are determined case-by-case based on the value, novelty, and commercial potential. (6) Approval from National Biodiversity Authority (NBA) for foreign entities, Section 4 of the Biological Diversity Act. (7) Documentation and reporting of all benefit-sharing arrangements.
+
+---
+TOPIC: Access and Benefit Sharing in Ayurveda - Detailed Framework
+JURISDICTION: India
+SUMMARY_CHUNK: Access and Benefit Sharing (ABS) in Ayurveda operates through a multi-tier framework: (1) National Biodiversity Authority (NBA) - apex body for foreign access requests, established under Section 8 of the Biological Diversity Act, 2002. (2) State Biodiversity Boards (SBBs) - approve access to biological resources within states for Indian entities. (3) Biodiversity Management Committees (BMCs) - local-level bodies at Panchayat and municipality level for documenting biodiversity and traditional knowledge. The ABS process for Ayurvedic resources includes: (a) identification of biological resources and associated traditional knowledge, (b) determination of whether access requires NBA/SBB approval, (c) obtaining prior informed consent from local communities and biodiversity holders, (d) negotiation of mutually agreed terms with benefit-sharing clauses, (e) execution of agreements through the NBA/SBB, (f) implementation and monitoring of benefit-sharing arrangements. ABS in Ayurveda is critical for protecting traditional knowledge holders' rights and ensuring equitable distribution of benefits from commercialization of biological resources.

@@ -1,0 +1,214 @@
+/* ============================================================
+   styles.css — educational clone of a gov portal layout
+   Teaches: CSS variables, Flexbox, Grid, responsive media queries
+   ============================================================ */
+
+/* ---- 1. CSS variables (reusable values) ---- */
+:root {
+  --gov-blue: #005cbb;      /* primary brand color */
+  --gov-orange: #ff7a00;    /* accent (saffron-ish) */
+  --ink: #1a1b1f;           /* default text */
+  --muted: #555;
+  --bg: #faf9fd;            /* page background */
+  --card-bg: #ffffff;
+  --border: #e0e2ec;
+  --maxw: 1140px;           /* max content width */
+}
+
+/* ---- 2. Reset / base ---- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Open Sans", "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+}
+a { color: var(--gov-blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ---- 3. Top utility bar ---- */
+.topbar {
+  background: #f0f2f8;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+}
+.topbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 16px;
+}
+.topbar a { color: var(--muted); }
+.sep { color: #bbb; margin: 0 6px; }
+.a11y-btn {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 4px;
+  padding: 1px 7px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* ---- 4. Header / branding ---- */
+.site-header { background: #fff; border-bottom: 3px solid var(--gov-blue); }
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+}
+.emblem {
+  width: 56px; height: 56px;
+  background: var(--gov-orange);
+  color: #fff;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px;
+  flex-shrink: 0;
+}
+.brand-text h1 { font-size: 22px; color: var(--gov-blue); }
+.brand-text p { font-size: 13px; color: var(--muted); }
+
+/* ---- 5. Main nav ---- */
+.main-nav { background: var(--gov-blue); }
+.nav-inner { display: flex; align-items: center; }
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+.nav-list li a {
+  display: block;
+  color: #fff;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.nav-list li a:hover,
+.nav-list li a.active {
+  background: rgba(255,255,255,0.15);
+  text-decoration: none;
+}
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.5);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 8px 0;
+}
+
+/* ---- 6. Hero banner ---- */
+.hero {
+  background: linear-gradient(135deg, var(--gov-blue), #003a78);
+  color: #fff;
+  padding: 56px 0;
+  text-align: center;
+}
+.hero h2 { font-size: 30px; margin-bottom: 12px; }
+.hero p { max-width: 640px; margin: 0 auto 20px; opacity: 0.92; }
+.btn {
+  display: inline-block;
+  background: var(--gov-orange);
+  color: #fff;
+  padding: 12px 26px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+.btn:hover { background: #e96e00; text-decoration: none; }
+
+/* ---- 7. Sections grid (CSS Grid) ---- */
+.sections {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  padding: 36px 16px;
+}
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.card h3 { color: var(--gov-blue); margin-bottom: 8px; font-size: 17px; }
+.card p { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+.link { font-size: 14px; font-weight: 600; }
+
+/* ---- 8. News ---- */
+.news { padding: 16px 16px 40px; }
+.section-title {
+  font-size: 22px; color: var(--gov-blue);
+  margin-bottom: 16px; border-left: 4px solid var(--gov-orange);
+  padding-left: 10px;
+}
+.news-list { list-style: none; }
+.news-list li {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.news-list .date {
+  display: inline-block;
+  background: var(--gov-blue);
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+/* ---- 9. Footer ---- */
+.site-footer { background: #212529; color: #ccc; margin-top: 20px; }
+.footer-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 36px 16px;
+}
+.footer-col h4 { color: #fff; margin-bottom: 12px; font-size: 15px; }
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 8px; }
+.footer-col a { color: #9ec5ff; font-size: 14px; }
+.footer-col p { font-size: 14px; }
+.footer-bottom {
+  background: #16191c;
+  padding: 14px 0;
+  text-align: center;
+  font-size: 13px;
+  color: #888;
+}
+
+/* ---- 10. Responsive: tablets ---- */
+@media (max-width: 900px) {
+  .sections { grid-template-columns: repeat(2, 1fr); }
+  .footer-inner { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---- 11. Responsive: mobile ---- */
+@media (max-width: 600px) {
+  .nav-toggle { display: block; }
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+  .nav-list.open { display: flex; } /* toggled by JS */
+  .nav-inner { flex-direction: column; align-items: stretch; }
+  .sections { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .topbar-inner { flex-direction: column; gap: 4px; align-items: flex-start; }
+  .hero h2 { font-size: 24px; }
+}
