@@ -1,0 +1,17 @@
+# IP-SAKTI Ayurveda IPR Assistant — verified working dependency set
+# Install with:  python -m venv .venv && .venv/Scripts/pip install -r requirements.txt
+# (Windows) or `.venv/bin/pip` on Linux/macOS.
+# Verified 2026-09-14 on Python 3.14 with chromadb 1.5.9.
+fastapi==0.116.1
+uvicorn[standard]==0.53.0
+openai==3.13.0
+google-generativeai==0.8.6
+requests==2.34.2
+python-dotenv==1.2.3
+SpeechRecognition==3.17.0
+chromadb==1.5.9
+numpy==2.5.3
+onnxruntime==1.30.0
+
+# Optional: gTTS fallback for text-to-speech when Sarvam AI is not configured
+# gTTS==2.5.4

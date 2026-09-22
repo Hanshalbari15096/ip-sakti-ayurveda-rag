@@ -89,22 +89,6 @@
       div.appendChild(demoTag);
     }
 
-    // Split jurisdiction source panels
-    const indiaPanel = makeSrcPanel("India sources", "india", data.sources_india);
-    const intlPanel = makeSrcPanel("International sources", "international", data.sources_international);
-    const metaWrap = document.createElement("div");
-    metaWrap.className = "meta-sources";
-    const label = document.createElement("div");
-    label.className = "src-label";
-    label.textContent = "Sources relied upon:";
-    metaWrap.appendChild(label);
-    if (indiaPanel) metaWrap.appendChild(indiaPanel);
-    if (intlPanel) metaWrap.appendChild(intlPanel);
-    if (!indiaPanel && !intlPanel && data.sources && data.sources.length) {
-      data.sources.forEach(function (s) { metaWrap.appendChild(makeSrcChip(s)); });
-    }
-    if (metaWrap.children.length > 1) div.appendChild(metaWrap);
-
     // TKDL prior-art pointer
     if (data.tkdl_pointer) {
       const p = document.createElement("div");

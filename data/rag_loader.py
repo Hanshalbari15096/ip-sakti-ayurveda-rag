@@ -6,6 +6,7 @@ the ChromaDB vector store with metadata for source attribution.
 import os
 import re
 import json
+import math
 import hashlib
 from typing import List, Dict, Optional
 from pathlib import Path
@@ -16,7 +17,97 @@ try:
 except ImportError:
     from config import config
 
-# Message digest of every data/*.txt file, written next to the vector store so
+# --- Hybrid (dense + BM25) support -------------------------------------------
+#
+# Chroma 1.5.9's sparse-collection path is unusable on this platform (the
+# chroma_bm25.json config schema is not shipped in the wheel, so any sparse
+# collection creation fails in the Rust backend). Hybrid retrieval therefore
+# scores the corpus with an in-memory classic BM25 over the same chunked
+# documents and RRF-fuses that ranking with the dense ANN. Same two-rank-list
+# design the sparse collection would have used, zero extra dependencies, and
+# fast enough for a ~350-chunk corpus (sub-millisecond per query).
+RRF_K = 60
+BM25_CANDIDATES_MULT = 3   # sparse pool = top_k * this (bounded recall boost)
+BM25_SYNTH_DIST_SCALE = 1.05  # distance for a BM25-only hit (just below worst dense)
+
+_ALNUM_RE = re.compile(r"[a-zA-Zऀ-ॿ]+|\d+", re.UNICODE)
+
+
+def _bm25_tokens(text: str) -> List[str]:
+    """Lower-cased alnum tokens (Latin + Devanagari + digits), length >= 2."""
+    return [t.lower() for t in _ALNUM_RE.findall(text) if len(t) >= 2]
+
+
+def chunk_id(source_path: str, chunk_index: int) -> str:
+    """Document id format shared by dense collection and BM25 index."""
+    return f"{source_path.replace('/', '_').replace('\\\\', '_')}_chunk_{chunk_index}"
+
+
+class InMemoryBM25:
+    """Classic BM25 (Robertson/Sparck-Jones) over a fixed corpus.
+
+    Precomputes per-document term frequencies, lengths, and IDF so each query
+    is a single sweep scoring every document. Items carry (id, text, meta);
+    jurisdiction filtering mirrors the dense collection's where-clause.
+    """
+
+    def __init__(self, items: List[tuple], k1: float = 1.5, b: float = 0.75):
+        self.k1 = k1
+        self.b = b
+        self.ids = [it[0] for it in items]
+        self.texts = [it[1] for it in items]
+        self.metas = [it[2] for it in items]
+        try:
+            self.jurs = [it[3] for it in items]
+        except IndexError:
+            self.jurs = ["General"] * len(items)
+
+        df: Dict[str, int] = {}
+        self.docs: List[Dict[str, int]] = []
+        self.doc_len: List[int] = []
+        for _, text, *_ in items:
+            toks = _bm25_tokens(text)
+            self.doc_len.append(len(toks))
+            tf: Dict[str, int] = {}
+            for tok in toks:
+                tf[tok] = tf.get(tok, 0) + 1
+            self.docs.append(tf)
+            for tok in tf:
+                df[tok] = df.get(tok, 0) + 1
+        self.df = df
+        n = len(self.docs)
+        self.n = n
+        self.avgdl = (sum(self.doc_len) / n) if n else 1.0
+
+    def score(self, query: str, jurisdiction: str = "all") -> Dict[str, float]:
+        """Return {doc_id: bm25_score} for all docs matching the jurisdiction."""
+        q_toks = set(_bm25_tokens(query))
+        if not q_toks:
+            return {}
+        if jurisdiction and jurisdiction not in ("all", "", None):
+            jur = jurisdiction.strip().capitalize()
+        else:
+            jur = "all"
+        k1, b, n = self.k1, self.b, self.n
+        avgdl = self.avgdl or 1.0
+        out: Dict[str, float] = {}
+        for di, tf in enumerate(self.docs):
+            if jur != "all" and self.jurs[di] not in (jur, "General"):
+                continue
+            dl = self.doc_len[di] or 1
+            s = 0.0
+            for tok in q_toks:
+                f = tf.get(tok, 0)
+                if not f:
+                    continue
+                freq = self.df.get(tok, 0)
+                idf = math.log(1.0 + (n - freq + 0.5) / (freq + 0.5))
+                s += idf * (f * (k1 + 1)) / (f + k1 * (1 - b + b * dl / avgdl))
+            if s > 0:
+                out[self.ids[di]] = s
+        return out
+
+    # Message digest of every data/*.txt file, written next to the vector store so
 # the collection is rebuilt automatically whenever the corpus changes. The
 # digest key is the data-file path and the value is its SHA-1 (fast and
 # adequate for freshness detection; not a security boundary).
@@ -178,6 +269,25 @@ class RAGStore:
             name=self.collection_name,
             embedding_function=self.embed_fn,
         )
+        # In-memory corpus + BM25 index for hybrid retrieval (see module note).
+        # Built eagerly during populate() when possible, else lazily on first
+        # hybrid query from the same chunking pipeline.
+        self._corpus: Optional[List[Dict]] = None
+        self._bm25: Optional[InMemoryBM25] = None
+
+    def _ensure_bm25(self, data_dir: str = "data") -> InMemoryBM25:
+        """Return the BM25 index, building it lazily from the data folder."""
+        if self._bm25 is not None:
+            return self._bm25
+        kb = self._corpus if self._corpus is not None else build_knowledge_base(data_dir)
+        items = [
+            (chunk_id(k["source_path"], k["chunk_index"]), k["text"],
+             {kk: k[kk] for kk in ("category", "source", "source_path", "jurisdiction")},
+             k.get("jurisdiction", "General"))
+            for k in kb
+        ]
+        self._bm25 = InMemoryBM25(items)
+        return self._bm25
 
     def populate(self, data_dir: str = "data", force: bool = False) -> int:
         """Populate the vector store from the data folder.
@@ -231,7 +341,7 @@ class RAGStore:
             return 0
 
         documents = [item["text"] for item in knowledge]
-        ids = [f"{item['source_path'].replace('/','_').replace('\\','_')}_chunk_{item['chunk_index']}" for item in knowledge]
+        ids = [chunk_id(item["source_path"], item["chunk_index"]) for item in knowledge]
         metadatas = [
             {
                 "category": item["category"],
@@ -244,6 +354,10 @@ class RAGStore:
 
         self.collection.add(documents=documents, ids=ids, metadatas=metadatas)
         self._save_manifest(current_manifest)
+        # Refresh hybrid cache from the corpus actually stored (rebuild can
+        # change chunk counts), so the BM25 index and dense ids stay aligned.
+        self._corpus = knowledge
+        self._bm25 = None
         print(f"[RAG Store] Added {len(documents)} documents to collection")
         return len(documents)
 
@@ -264,8 +378,26 @@ class RAGStore:
         explicit jurisdiction marker) are always included alongside the
         jurisdiction-specific hits, so unknown-jurisdiction content is
         never dropped.
+
+        With hybrid search enabled (config.hybrid_search), the dense ANN
+        ranking is RRF-fused with an in-memory BM25 ranking. The returned
+        documents/metadatas/distances keep the same shape as a plain Chroma
+        result so callers (app.py) are unaffected.
         """
         n = top_k or config.top_k
+        dense = self._dense_query(query_text, n, jurisdiction)
+        if not config.hybrid_search:
+            return dense
+        try:
+            return self._hybrid_query(dense, query_text, n, jurisdiction)
+        except Exception as e:
+            print(f"[RAG Store] Hybrid query failed ({e}); returning dense results")
+            return dense
+
+    def _dense_query(self, query_text: str, n: int, jurisdiction: str) -> Dict:
+        """Dense ANN query (identical to pre-hybrid behaviour)."""
+        # Query always returns ids; "ids" is not a valid include item here.
+        include = ["documents", "metadatas", "distances"]
         if jurisdiction and jurisdiction not in ("all", "", None):
             jur = jurisdiction.strip().capitalize()
             # Prefer the jurisdiction-specific chunks, but always keep
@@ -276,12 +408,71 @@ class RAGStore:
                     query_texts=[query_text],
                     n_results=n,
                     where=where,
+                    include=include,
                 )
                 if result.get("documents", [[]])[0]:
                     return result
             except Exception as e:
                 print(f"[RAG Store] jurisdiction filter failed ({e}); querying without filter")
-        return self.collection.query(query_texts=[query_text], n_results=n)
+        return self.collection.query(query_texts=[query_text], n_results=n, include=include)
+
+    def _hybrid_query(self, dense: Dict, query_text: str, n: int, jurisdiction: str) -> Dict:
+        """RRF-fuse dense ANN + in-memory BM25, preserving dense distance semantics.
+
+        Fused documents keep their native dense distance when they came from
+        the dense top-k (so confidence-band calibration in app.py is
+        unchanged). Documents rescued by BM25 only get a synthesized distance
+        just below the worst dense hit.
+        """
+        dense_ids = dense.get("ids", [[]])[0]
+        dense_docs = dense.get("documents", [[]])[0]
+        dense_metas = dense.get("metadatas", [[]])[0]
+        dense_dists = dense.get("distances", [[]])[0]
+
+        bm25 = self._ensure_bm25()
+        bm25_scores = bm25.score(query_text, jurisdiction=jurisdiction)
+
+        dense_rank = {doc_id: rank for rank, doc_id in enumerate(dense_ids)}
+        bm25_ordered = sorted(
+            bm25_scores, key=bm25_scores.get, reverse=True
+        )[: max(n * BM25_CANDIDATES_MULT, 10)]
+        bm25_rank = {doc_id: rank for rank, doc_id in enumerate(bm25_ordered)}
+
+        rrf: Dict[str, float] = {}
+        for doc_id, rank in dense_rank.items():
+            rrf[doc_id] = rrf.get(doc_id, 0.0) + 1.0 / (RRF_K + rank + 1)
+        for doc_id, rank in bm25_rank.items():
+            rrf[doc_id] = rrf.get(doc_id, 0.0) + 1.0 / (RRF_K + rank + 1)
+
+        if not rrf:
+            return dense
+
+        # Fused order; dense rank breaks ties so identical sets keep dense order.
+        order = sorted(
+            rrf, key=lambda doc_id: (-rrf[doc_id], dense_rank.get(doc_id, float("inf")))
+        )[:n]
+
+        dense_idx = {doc_id: i for i, doc_id in enumerate(dense_ids)}
+        synth_dist = (max(dense_dists) * BM25_SYNTH_DIST_SCALE) if dense_dists else 1.0
+
+        docs_out, metas_out, dists_out = [], [], []
+        for doc_id in order:
+            if doc_id in dense_idx:
+                i = dense_idx[doc_id]
+                docs_out.append(dense_docs[i])
+                metas_out.append(dense_metas[i])
+                dists_out.append(dense_dists[i])
+            else:
+                docs_out.append(bm25.texts[bm25.ids.index(doc_id)])
+                metas_out.append(bm25.metas[bm25.ids.index(doc_id)])
+                dists_out.append(synth_dist)
+
+        return {
+            "ids": [order],
+            "documents": [docs_out],
+            "metadatas": [metas_out],
+            "distances": [dists_out],
+        }
 
     def get_stats(self) -> Dict:
         """Return statistics about the vector store."""

@@ -18,3 +18,7 @@ __pycache__/
 # OS / editor
 .DS_Store
 Thumbs.db
+# Logs & temp scratch folders
+server.log
+temp_imgs/
+temp_draft_pages/

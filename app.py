@@ -1,4 +1,7 @@
-from flask import Flask, request, jsonify, send_from_directory
+from fastapi import FastAPI
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel, ConfigDict, Field
 from openai import OpenAI
 import google.generativeai as genai
 import os
@@ -16,9 +19,12 @@ import hashlib
 sys.stdout.reconfigure(encoding="utf-8")
 sys.stderr.reconfigure(encoding="utf-8")
 
-
-
-app = Flask(__name__, static_folder="ayush-clone", static_url_path="")
+app = FastAPI(
+    title="IP-SAKTI Ayurveda IPR Assistant",
+    description="Multilingual RAG-based (source-cited) AI assistant for IP and "
+    "regulatory guidance in Ayurveda, across national and international regimes.",
+    version="0.2.0",
+)
 
 from data.rag_loader import initialize_rag
 from data.config import config
@@ -133,10 +139,10 @@ def transcribe_sarvam(audio_data: bytes, language_code: str = "hi-IN") -> str:
                 return transcript
         else:
             print(f"[SARVAM STT] Error: {response.status_code} - {response.text}")
-            
+
     except Exception as e:
         print(f"[SARVAM STT] Exception: {e}")
-    
+
     return ""
 
 
@@ -391,7 +397,8 @@ SYSTEM_PROMPT = (
     "   'First', 'Second', 'Step', 'Based on', 'According to', 'The answer is', "
     "   'Drafting Answer', 'Final Answer', 'I need to', 'I should', 'Note that', "
     "   'Wait', 'Output Generation', 'Self-Correction', 'Check against rules'. "
-    "8. Output ONLY the bullet list. Nothing before or after it."
+    "8. Output ONLY the bullet list. Nothing before or after it. "
+    "9. Respond in the SAME language as the user's question. If the user writes in Hindi, respond in Hindi; if in Marathi, respond in Marathi; if in English, respond in English. If the user writes in Bengali, respond in Bengali; Tamil, respond in Tamil; Telugu, respond in Telugu; Kannada, respond in Kannada; Gujarati, respond in Gujarati; Sanskrit, respond in Sanskrit."
 )
 
 
@@ -399,7 +406,7 @@ def clean_answer(text: str) -> str:
     if not text:
         return ""
 
-    text = re.sub(r"<think>[\s\S]*?</think>", "", text, flags=re.IGNORECASE)
+    text = re.sub(r" thinking[\s\S]*? response", "", text, flags=re.IGNORECASE)
     text = re.sub(r"<[^>]+>", " ", text)
     text = re.sub(r"```[\s\S]*?```", "", text)
 
@@ -433,7 +440,7 @@ def clean_answer(text: str) -> str:
         if not line:
             continue
 
-        line = re.sub(r"^[\-\*\u2022\u25E6\u2023]+", "", line).strip()
+        line = re.sub(r"^[\-\*•◦‣]+", "", line).strip()
         line = re.sub(r"^\d+[\.\)]\s*", "", line).strip()
         line = re.sub(r"^\*\*|\*\*$", "", line).strip()
 
@@ -465,12 +472,46 @@ def clean_answer(text: str) -> str:
     return text
 
 
-@app.route("/")
+@app.get("/", include_in_schema=False)
 def index():
-    return send_from_directory("ayush-clone", "index.html")
+    return FileResponse(os.path.join("ayush-clone", "index.html"))
 
 
-def generate_rag_answer(user_query: str, jurisdiction: str = "all"):
+class QueryIn(BaseModel):
+    query: str = ""
+    jurisdiction: str = "all"
+    top_k: int | None = None
+
+
+def detect_query_language(text: str) -> str:
+    """Detect script/language of the input text to respond in the appropriate language."""
+    if not text:
+        return "en"
+    if re.search(r"[ঀ-৿]", text):
+        return "bn"  # Bengali
+    if re.search(r"[஀-௿]", text):
+        return "ta"  # Tamil
+    if re.search(r"[ఀ-౿]", text):
+        return "te"  # Telugu
+    if re.search(r"[ಀ-೿]", text):
+        return "kn"  # Kannada
+    if re.search(r"[઀-૿]", text):
+        return "gu"  # Gujarati
+    if re.search(r"[ഀ-ൿ]", text):
+        return "ml"  # Malayalam
+    if re.search(r"[଀-୿]", text):
+        return "or"  # Odia
+    if re.search(r"[਀-੿]", text):
+        return "pa"  # Punjabi
+    if re.search(r"[ऀ-ॿ]", text):
+        # Check for Marathi markers
+        if any(w in text for w in ["आहे", "नाही", "काय", "कसे", "सांगा", "माहिती", "करावे"]):
+            return "mr"
+        return "hi"
+    return "en"
+
+
+def generate_rag_answer(user_query: str, jurisdiction: str = "all", requested_lang: str | None = None):
     """Shared RAG pipeline: retrieve -> build sources -> LLM answer.
 
     Used by both /query and /query-voice so voice and text get identical
@@ -539,13 +580,23 @@ def generate_rag_answer(user_query: str, jurisdiction: str = "all"):
         }
         return payload
 
-    # No manual language detection — model auto-detects from query
+    # Determine output language from explicit request or detected script
+    output_lang = requested_lang if (requested_lang and requested_lang != "en") else detect_query_language(user_query)
+
     system_content = SYSTEM_PROMPT
     if jurisdiction and jurisdiction != "all":
         system_content += (
             f"\n9. Focus on {jurisdiction.capitalize()} law and guidance only. "
             "State the jurisdiction explicitly in your bullets."
         )
+    if output_lang and output_lang != "en":
+        lang_name = {
+            "hi": "Hindi", "mr": "Marathi", "sa": "Sanskrit",
+            "bn": "Bengali", "ta": "Tamil", "te": "Telugu",
+            "kn": "Kannada", "gu": "Gujarati", "ml": "Malayalam",
+            "pa": "Punjabi", "or": "Odia"
+        }.get(output_lang, output_lang)
+        system_content += f"\n10. IMPORTANT: You MUST write your ENTIRE response in {lang_name} language only."
 
     context = "\n\n---\n\n".join(retrieved)
     user_prompt = f"### Context:\n{context}\n\n### Question:\n{user_query}"
@@ -590,38 +641,48 @@ def generate_rag_answer(user_query: str, jurisdiction: str = "all"):
     return payload
 
 
-@app.route("/query", methods=["POST"])
-def query():
+@app.post("/query")
+def query(req: QueryIn):
     jurisdiction = "all"
     try:
-        data = request.json
-        user_query = data.get("query", "").strip()
-        jurisdiction = data.get("jurisdiction", "all")
+        user_query = req.query.strip()
+        jurisdiction = req.jurisdiction
         if jurisdiction not in ("all", "india", "international"):
             jurisdiction = "all"
-        top_k = data.get("top_k", config.top_k)
+        top_k = req.top_k or config.top_k
 
         if not user_query:
-            return jsonify({"answer": "Please ask a question.", "sources": []})
+            return {"answer": "Please ask a question.", "sources": []}
 
-        return jsonify(generate_rag_answer(user_query, jurisdiction))
+        return generate_rag_answer(user_query, jurisdiction)
     except Exception as e:
-        return jsonify({"answer": f"Error: {e}", "sources": [], "confidence": "low", "jurisdiction": jurisdiction, "disclaimer": DISCLAIMER})
+        return {"answer": f"Error: {e}", "sources": [], "confidence": "low", "jurisdiction": jurisdiction, "disclaimer": DISCLAIMER}
 
 
-@app.route("/query-voice", methods=["POST"])
-def query_voice():
+class VoiceQueryIn(BaseModel):
+    """/query-voice body. JSON keys come from the browser mic widget
+    (camelCase), so aliases map them onto snake_case fields.
+    """
+    model_config = ConfigDict(populate_by_name=True)
+
+    audio_base64: str = Field(default="", alias="audioBase64")
+    input_language: str = Field(default="en", alias="inputLanguage")
+    output_language: str = Field(default="en", alias="outputLanguage")
+    jurisdiction: str = "all"
+
+
+@app.post("/query-voice")
+def query_voice(req: VoiceQueryIn):
     try:
-        data = request.json
-        input_lang = data.get("inputLanguage", "en")
-        output_lang = data.get("outputLanguage", "en")
-        audio_b64 = data.get("audioBase64", "")
-        jurisdiction = data.get("jurisdiction", "all")
+        input_lang = req.input_language
+        output_lang = req.output_language
+        audio_b64 = req.audio_base64
+        jurisdiction = req.jurisdiction
         if jurisdiction not in ("all", "india", "international"):
             jurisdiction = "all"
 
         if not audio_b64:
-            return jsonify({"error": "No audio provided", "success": False})
+            return {"error": "No audio provided", "success": False}
 
         audio_data = base64.b64decode(audio_b64)
 
@@ -629,9 +690,9 @@ def query_voice():
         user_text = transcribe_audio(audio_data, input_lang)
 
         if not user_text:
-            return jsonify({"error": "Could not transcribe audio", "success": False})
+            return {"error": "Could not transcribe audio", "success": False}
 
-        result = generate_rag_answer(user_text, jurisdiction)
+        result = generate_rag_answer(user_text, jurisdiction, requested_lang=output_lang)
 
         audio_b64_out = None
         try:
@@ -640,7 +701,7 @@ def query_voice():
         except Exception:
             audio_b64_out = None
 
-        return jsonify({
+        return {
             "answer": result.get("answer", ""),
             "user_text": user_text,
             "sources": result.get("sources", []),
@@ -653,47 +714,55 @@ def query_voice():
             "success": True,
             "inputLanguage": input_lang,
             "outputLanguage": output_lang
-        })
+        }
     except Exception as e:
-        return jsonify({"error": str(e), "success": False})
+        return {"error": str(e), "success": False}
 
 
-@app.route("/text-to-speech", methods=["POST"])
-def text_to_speech():
+class TTSIn(BaseModel):
+    text: str = ""
+    language: str = "en"
+
+
+@app.post("/text-to-speech")
+def text_to_speech(req: TTSIn):
     try:
-        data = request.json
-        text = data.get("text", "")
-        language = data.get("language", "en")
+        text = req.text
+        language = req.language
 
         if not text:
-            return jsonify({"error": "No text provided", "audio_base64": None})
+            return {"error": "No text provided", "audio_base64": None}
 
         lang_code = SARVAM_LANG_CODES.get(language, "en-IN")
         audio_b64 = bulbul_tts(text, lang_code)
 
         if audio_b64:
-            return jsonify({"success": True, "audio_base64": audio_b64, "language": language})
+            return {"success": True, "audio_base64": audio_b64, "language": language}
         else:
-            return jsonify({"error": "TTS failed", "audio_base64": None})
+            return {"error": "TTS failed", "audio_base64": None}
     except Exception as e:
-        return jsonify({"error": str(e), "audio_base64": None})
+        return {"error": str(e), "audio_base64": None}
 
 
-@app.route("/stats", methods=["GET"])
+@app.get("/stats")
 def stats():
-    return jsonify(rag_store.get_stats())
+    return rag_store.get_stats()
 
 
-@app.route("/rebuild", methods=["POST"])
+@app.post("/rebuild")
 def rebuild():
     try:
         rag_store.populate(data_dir="data", force=True)
-        return jsonify({"success": True, "stats": rag_store.get_stats()})
+        # The root data.txt keyword index caches blocks; drop it so a fresh
+        # read happens on the next query — /rebuild stays authoritative.
+        from root_search import reload_root_data
+        reload_root_data()
+        return {"success": True, "stats": rag_store.get_stats()}
     except Exception as e:
-        return jsonify({"success": False, "error": str(e)})
+        return {"success": False, "error": str(e)}
 
 
-@app.route("/languages", methods=["GET"])
+@app.get("/languages")
 def get_languages():
     stt_provider = config.stt_provider
     languages = [
@@ -704,13 +773,13 @@ def get_languages():
             ("gu", "Gujarati"),
         ]
     ]
-    return jsonify({
+    return {
         "stt_provider": stt_provider,
         "languages": languages
-    })
+    }
 
 
-@app.route("/corpus-version", methods=["GET"])
+@app.get("/corpus-version")
 def corpus_version():
     version_path = os.path.join("data", "corpus_version.json")
     try:
@@ -719,12 +788,12 @@ def corpus_version():
     except Exception:
         version_info = {"version": "unknown", "date": "unknown", "sources": []}
     version_info["rag_documents"] = rag_store.get_stats().get("total_documents", 0)
-    return jsonify(version_info)
+    return version_info
 
 
-@app.route("/escalation", methods=["GET"])
+@app.get("/escalation")
 def escalation():
-    return jsonify({
+    return {
         "contacts": ESCALATION_CONTACTS,
         "when_to_escalate": [
             "Patent drafting or filing",
@@ -734,19 +803,19 @@ def escalation():
             "GI application drafting",
         ],
         "disclaimer": DISCLAIMER,
-    })
+    }
 
 
-@app.route("/health", methods=["GET"])
+@app.get("/health")
 def health():
-    return jsonify({
+    return {
         "status": "ok",
         "demo_mode": config.demo_mode,
         "rag_documents": rag_store.get_stats().get("total_documents", 0),
         "stt_provider": config.stt_provider,
         "sarvam_stt": config.sarvam_configured,
         "groq_stt": config.groq_configured,
-    })
+    }
 
 
 # ============================================================
@@ -862,27 +931,30 @@ def classify_formulation(answers: dict) -> dict:
     return result
 
 
-@app.route("/formulation/classify", methods=["POST"])
-def formulation_classify():
+class FormulationIn(BaseModel):
+    answers: dict = {}
+
+
+@app.post("/formulation/classify")
+def formulation_classify(req: FormulationIn):
     try:
-        data = request.json or {}
-        answers = data.get("answers", {})
+        answers = req.answers or {}
         required = {step["id"] for step in FORMULATION_QUESTION_STEPS}
         missing = [q for q in required if q not in answers]
         if missing:
-            return jsonify({
+            return {
                 "error": f"Missing answers: {', '.join(missing)}",
                 "questions": FORMULATION_QUESTION_STEPS,
                 "success": False,
-            })
-        return jsonify({"success": True, **classify_formulation(answers)})
+            }
+        return {"success": True, **classify_formulation(answers)}
     except Exception as e:
-        return jsonify({"error": str(e), "success": False})
+        return {"error": str(e), "success": False}
 
 
-@app.route("/formulation/questions", methods=["GET"])
+@app.get("/formulation/questions")
 def formulation_questions():
-    return jsonify({"steps": FORMULATION_QUESTION_STEPS})
+    return {"steps": FORMULATION_QUESTION_STEPS}
 
 
 # ============================================================
@@ -947,22 +1019,27 @@ ABS_CHECKLIST = [
 ]
 
 
-@app.route("/abs/checklist", methods=["GET"])
+@app.get("/abs/checklist")
 def abs_checklist():
-    return jsonify({
+    return {
         "steps": ABS_CHECKLIST,
         "tkdl_pointer": TKDL_POINTER,
         "disclaimer": DISCLAIMER,
-    })
+    }
 
 
-@app.route("/abs/check", methods=["POST"])
-def abs_check():
+class AbsCheckIn(BaseModel):
+    completed: list = []
+    foreign_entity: bool = False
+    exports: bool = False
+
+
+@app.post("/abs/check")
+def abs_check(req: AbsCheckIn):
     try:
-        data = request.json or {}
-        completed = set(data.get("completed", []))
-        foreign_entity = data.get("foreign_entity", False)
-        exports = data.get("exports", False)
+        completed = set(req.completed or [])
+        foreign_entity = req.foreign_entity
+        exports = req.exports
 
         remaining = [step for step in ABS_CHECKLIST if step["id"] not in completed]
         required_ids = {s["id"] for s in ABS_CHECKLIST}
@@ -977,7 +1054,7 @@ def abs_check():
         ]
         pct = round(100 * len(completed & required_ids) / len(required_ids)) if required_ids else 100
 
-        return jsonify({
+        return {
             "success": True,
             "percent_complete": pct,
             "remaining_steps": remaining,
@@ -986,15 +1063,30 @@ def abs_check():
             "foreign_entity_required": foreign_entity,
             "export_required": exports,
             "disclaimer": DISCLAIMER,
-        })
+        }
     except Exception as e:
-        return jsonify({"error": str(e), "success": False})
+        return {"error": str(e), "success": False}
+
+
+# Serve the static frontend (ayush-clone/) from the root. Declared LAST so the
+# API routes above win; anything unmatched falls through to the static mount.
+app.mount("/", StaticFiles(directory="ayush-clone", html=True), name="static")
+
+
+def run_server() -> None:
+    import uvicorn
+    use_reload = os.environ.get("FLASK_DEBUG", "0") == "1"
+    port = int(os.environ.get("PORT", "5000"))
+    uvicorn.run(
+        app,
+        host="0.0.0.0",
+        port=port,
+        reload=use_reload,
+    )
 
 
 if __name__ == "__main__":
     print(f"[START] IP-SAKTI Ayurveda IPR Assistant running at http://127.0.0.1:5000")
     print(f"[START] Supported languages: Auto-detected (English, Hindi, Marathi, etc.)")
     print(f"[START] Data folder: data/")
-    use_debug = os.environ.get("FLASK_DEBUG", "0") == "1"
-    port = int(os.environ.get("PORT", "5000"))
-    app.run(debug=use_debug, use_reloader=False, host="0.0.0.0", port=port)
+    run_server()

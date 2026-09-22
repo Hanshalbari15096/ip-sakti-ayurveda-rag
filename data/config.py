@@ -38,6 +38,13 @@ class AppConfig:
     top_k: int = field(default_factory=lambda: int(os.getenv("TOP_K", "8")))
     data_file: str = "data/data.txt"
 
+    # Hybrid retrieval (dense ANN + in-memory BM25 fused by RRF). Set to 0 to
+    # disable and fall back to dense-only search (A/B comparison).
+    hybrid_search: bool = field(
+        default_factory=lambda: os.getenv("HYBRID_SEARCH", "1").lower()
+        in ("1", "true", "yes", "on")
+    )
+
     # Languages
     supported_languages: list = field(
         default_factory=lambda: ["en", "hi", "mr", "sa", "bn", "ta", "te", "kn", "gu"]
@@ -88,6 +95,7 @@ class AppConfig:
         print(f"  Collection name : {self.collection_name}")
         print(f"  Chunk size      : {self.chunk_size}")
         print(f"  Top-K results   : {self.top_k}")
+        print(f"  Hybrid search   : {'ON (dense + BM25)' if self.hybrid_search else 'OFF (dense only)'}")
         print(f"  LLM model       : {self.model}")
         print(f"  Data file       : {self.data_file}")
         print(f"  Gemini API key  : {'SET' if self.gemini_api_key else 'MISSING'}")

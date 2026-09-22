@@ -1,0 +1,97 @@
+Slide 1: Title & Identity
+
+Visual Prompt:
+Split-screen visual blending traditional heritage and futuristic tech. Left side: ancient Sanskrit palm-leaf Ayurveda manuscript and golden Ashoka chakra motif. Right side: glowing digital neural network nodes, cybernetic circuitry, and a modern chat interface HUD. Deep navy blue, warm gold, and emerald green tones. Clean, minimalist, high-tech government portal aesthetic, 8k resolution.
+
+Slide Layout:
+- Top right: Problem Statement ID badge (SIH26045)
+- Center: Large bold title and subtitle
+- Bottom: Team name, Ministry theme, and category tags
+
+Pointers:
+- Title: IP-SAKTI (Multilingual RAG-Based Ayurveda IPR Assistant)
+- Team: VedaVanguard
+- Problem ID: SIH26045
+- Theme: Healthcare & Traditional Knowledge (Software Category)
+- Focus: AI Shield Against Biopiracy and IPR Compliance Automation
+
+Slide 2: Problem Statement & Biopiracy Challenge
+
+Visual Prompt:
+Conceptual 3D isometric illustration of an ancient medicinal plant (turmeric and neem) enclosed in a fragile glass shield, surrounded by interlocking legal locks, global patent stamp icons, and conflicting jurisdictional flags. Dark sleek background with glowing red alert indicators showing unauthorized patent attempts.
+
+Slide Layout:
+- Left Column: Shock Fact & The Biopiracy Threat (Turmeric & Neem cases)
+- Center: Icon-based legal maze
+- Right Column: Stakeholder Pain Points
+
+Pointers:
+- The Biopiracy Crisis: 2,000+ documented worldwide attempts to patent Indian traditional knowledge (e.g., US turmeric patent battle).
+- Regulatory Maze: Navigating Patents Act Sec 3(p), Biological Diversity Act 2002, TKDL, TRIPS, and Nagoya Protocol simultaneously.
+- Practitioner Barrier: 50K+ AYUSH MSMEs and vaidyas lack IP literacy, formulation classification tools, and export ABS compliance guidance.
+- Linguistic Divide: Legal knowledge locked in English/statutory text; practitioners operate across 9+ Indian regional languages.
+
+Slide 3: Proposed Solution — IP-SAKTI
+
+Visual Prompt:
+Clean product mockup showing a sleek, modern desktop and mobile UI of the AYUSH-themed IP-SAKTI portal. Prominently displays an active chat widget with a jurisdiction toggle (India / International), audio waveform indicating voice conversation, and verified citation tags below responses. Bright, professional tech aesthetic.
+
+Slide Layout:
+- Center-Left: High-fidelity UI mockup of the chat assistant
+- Right Grid: 6 core capability cards with icons
+
+Pointers:
+- Multilingual Voice I/O: 9 Indian languages (Hindi, Marathi, Sanskrit, Bengali, Tamil, Telugu, Kannada, Gujarati, English).
+- Jurisdiction Isolation: Separate India domestic law vs. International frameworks (WIPO / Nagoya) to prevent legal conflation.
+- Formulation Classifier: 4-step decision tree categorizing Classical, Proprietary (PAM), Phytopharmaceutical, and Cosmetics.
+- ABS Compliance Engine: Step-by-step Prior Informed Consent (PIC) -> Mutually Agreed Terms (MAT) -> NBA approval checklist.
+- Citation-Grounded Outputs: Every answer cites statutes, court precedents, or TKDL prior-art with confidence scores.
+- Expert Escalation: Direct handoff to patent agents, NBA officers, GI Registry, and NALSA legal aid.
+
+Slide 4: Technical Architecture & Pipeline
+
+Visual Prompt:
+Clean, modern system architecture flowchart with glassmorphism boxes, glowing data paths, and distinct pipeline stages: Input (Voice/Text in 9 languages) -> Query Processing & Router -> Hybrid Retrieval Engine (Dense Vectors + BM25) -> Curated Legal Store -> Guardrailed LLM Generator -> Verified Output with DPDP audit logs.
+
+Slide Layout:
+- Top Bar: Query Ingestion (Text/Speech via Sarvam AI & Groq Whisper)
+- Middle Tier: Hybrid Retrieval (ChromaDB + MiniLM-L12-v2 + BM25 + Reciprocal Rank Fusion)
+- Bottom Tier: Grounded Generation (Gemini / Groq + Legal Guardrails + Safe Abstention)
+
+Pointers:
+- Query Pipeline: Multilingual speech-to-text (Sarvam AI / Whisper) with language identification and routing.
+- Hybrid Retrieval: Vector embeddings (all-MiniLM-L12-v2 in ChromaDB) fused with BM25 keyword search via Reciprocal Rank Fusion (RRF).
+- Knowledge Corpus: 100% curated government legal corpus (Patents Act, BDA 2002, GI Registry, WIPO GRATK 2024, API Monographs).
+- Guardrailed Inference: Prompt-engineered legal constraints preventing hallucinations, enforcing citations, and triggering safe abstention.
+
+Slide 5: Feasibility, Viability & Tech Stack
+
+Visual Prompt:
+3D isometric infographic showing 4 metric cards: a cloud server icon with "$30/mo" badge, a timeline showing "6-8 Weeks to Production", a padlock icon labeled "100% Open Gov Data", and a CPU showing "Zero GPU Required / CPU Optimized".
+
+Slide Layout:
+- 2x2 grid comparing Technical Feasibility, Cost Efficiency, Data Legality, and Deployment Speed
+
+Pointers:
+- Zero Research Risk: Built on proven, mature components (FastAPI, ChromaDB, Sentence-Transformers, Groq/Gemini).
+- Ultra-Low Infrastructure Cost: CPU-optimized lightweight embeddings (~$30/month cloud run; no dedicated GPU cluster needed).
+- Clean Legal Standing: Ingests 100% open public government statutes, gazettes, and treaties; zero proprietary licensing hurdles.
+- Rapid Delivery: Working MVP ready; production rollout in 6-8 weeks with 2-3 developers.
+
+Slide 6: Impact, Scope & Roadmap
+
+Visual Prompt:
+A clean 3-phase horizontal roadmap graphic connecting Stage 1 (Done), Stage 2 (In Progress), and Stage 3 (Scale), flanked by three impact pillar badges: Social (Biopiracy Shield), Economic (Litigation Reduction), and Environmental (Bio-resource ABS Tracking).
+
+Slide Layout:
+- Top: 3 Impact Pillars (Social, Economic, Environmental)
+- Bottom: 3-Stage Development Roadmap
+
+Pointers:
+- Social Impact: Democratizes legal guidance across 9 regional languages and protects indigenous knowledge holders.
+- Economic Value: Slashes patent filing/litigation costs for MSMEs and accelerates export clearance under Nagoya ABS rules.
+- Environmental Stewardship: Enforces sustainable bio-resource sourcing and benefit-sharing compliance.
+- 3-Stage Roadmap:
+  * Stage 1 (Current): Multilingual RAG MVP + Voice I/O + Citation Grounding [Completed]
+  * Stage 2: TKDL API Integration + Knowledge Graph Multi-hop Reasoning
+  * Stage 3: Direct AYUSH Ministry Portal Embedding + Enterprise/State Biodiversity Board Handover

@@ -9,6 +9,7 @@ if not exist ".env" (
     echo [INFO] Starting in DEMO MODE.
 )
 
+REM Use the virtual environment Python (required for fastapi, chromadb, etc.)
 echo [INFO] Starting IP-SAKTI Ayurveda IPR Assistant...
-python app.py
+.venv\Scripts\python app.py
 pause
